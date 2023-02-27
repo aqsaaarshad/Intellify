@@ -17,21 +17,5 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
-WebUI.openBrowser("https://stage.devintellifyvms.com/login")
 
-WebUI.maximizeWindow()
-
-WebUI.sendKeys(findTestObject('LoginScreen/Username'), GlobalVariable.username)
-
-WebUI.click(findTestObject('LoginScreen/ButtonSignIn'))
-
-WebUI.sendKeys(findTestObject('LoginScreen/Password'), GlobalVariable.password)
-
-WebUI.click(findTestObject('LoginScreen/ButtonSignIn'))
-
-//WebUI.waitForPageLoad(50)
-
-WebUI.enableSmartWait()
-
-//WebUI.closeBrowser()
-
+WebUI.navigateToUrl("https://stage.devintellifyvms.com/Requisitions/Submissions")
