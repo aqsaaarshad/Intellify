@@ -12,26 +12,23 @@ import com.kms.katalon.core.testdata.TestData as TestData
 import com.kms.katalon.core.testng.keyword.TestNGBuiltinKeywords as TestNGKW
 import com.kms.katalon.core.testobject.TestObject as TestObject
 import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
+import com.kms.katalon.core.webui.driver.DriverFactory
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
-WebUI.openBrowser("https://stage.devintellifyvms.com/login")
+import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
+import org.openqa.selenium.By
+import org.openqa.selenium.WebDriver
+import org.openqa.selenium.WebElement
+import com.kms.katalon.core.webui.driver.DriverFactory
 
-WebUI.maximizeWindow()
+WebUI.callTestCase(findTestCase('Submissions/FunctionalTCs/VerifyTableExist'), [:], FailureHandling.STOP_ON_FAILURE)
 
-WebUI.sendKeys(findTestObject('LoginScreen/Username'), GlobalVariable.username)
-
-WebUI.click(findTestObject('LoginScreen/ButtonSignIn'))
-
-WebUI.sendKeys(findTestObject('LoginScreen/Password'), GlobalVariable.password)
-
-WebUI.click(findTestObject('LoginScreen/ButtonSignIn'))
-
-//WebUI.waitForPageLoad(50)
-
-WebUI.enableSmartWait()
-
-//WebUI.closeBrowser()
-
+WebDriver driver = DriverFactory.getWebDriver ()
+WebElement Table = driver.findElement(By.xpath('//*[@id="AllSubmissionGrid"]'))
+List<WebElement> table_row = Table.findElements(By.tagName('igx-grid-row'))
+int rows_count = table_row.size()
+println(rows_count)
+//println ("found ${rows_count} rows")

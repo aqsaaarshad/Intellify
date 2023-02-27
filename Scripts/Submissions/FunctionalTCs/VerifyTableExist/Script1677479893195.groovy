@@ -17,21 +17,14 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
-WebUI.openBrowser("https://stage.devintellifyvms.com/login")
+//call login test case
+WebUI.callTestCase(findTestCase('Login'), [:], FailureHandling.STOP_ON_FAILURE)
 
-WebUI.maximizeWindow()
+// Navigation 
+WebUI.callTestCase(findTestCase('Submissions/Commons/NavigateToSubmissions'), [:], FailureHandling.STOP_ON_FAILURE)
 
-WebUI.sendKeys(findTestObject('LoginScreen/Username'), GlobalVariable.username)
+// verify table exist
+WebUI.verifyTextPresent('Submissions', false, FailureHandling.STOP_ON_FAILURE)
 
-WebUI.click(findTestObject('LoginScreen/ButtonSignIn'))
 
-WebUI.sendKeys(findTestObject('LoginScreen/Password'), GlobalVariable.password)
-
-WebUI.click(findTestObject('LoginScreen/ButtonSignIn'))
-
-//WebUI.waitForPageLoad(50)
-
-WebUI.enableSmartWait()
-
-//WebUI.closeBrowser()
 
